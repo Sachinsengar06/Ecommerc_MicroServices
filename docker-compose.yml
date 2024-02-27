@@ -1,0 +1,74 @@
+version: '3.4'
+
+services:
+  rabbitmq:
+    container_name: "rabbitmq"
+    image: rabbitmq:3-management
+    environment:
+      - RABBITMQ_DEFAULT_USER=myuser
+      - RABBITMQ_DEFAULT_PASS=myuser1
+    ports:
+      # RabbitMq instance
+      - '5672:5672'
+      # web interface
+      - '15672:15672'
+    networks:
+      - my-network
+
+  eureka-server:
+    container_name: eureka-server
+    image: steeltoeoss/eurekaserver:latest
+    restart: on-failure
+    hostname: eureka-server
+    networks:
+      - my-network
+    
+  checkoutservice:
+    image: ${DOCKER_REGISTRY-}checkoutservice
+    build:
+      context: .
+      dockerfile: CheckOutService/Dockerfile
+    networks:
+      - my-network
+
+  authwebapi:
+    image: ${DOCKER_REGISTRY-}authwebapi
+    build:
+      context: .
+      dockerfile: AuthWebApi/Dockerfile
+    networks:
+      - my-network
+
+
+  productservices:
+    image: ${DOCKER_REGISTRY-}productservices
+    build:
+      context: .
+      dockerfile: ProductServices/Dockerfile
+    networks:
+      - my-network
+    depends_on:
+      - rabbitmq
+
+
+  gateway:
+    image: ${DOCKER_REGISTRY-}gateway
+    build:
+      context: .
+      dockerfile: GateWay/Dockerfile
+    networks:
+      - my-network
+
+  cartservice:
+    image: ${DOCKER_REGISTRY-}cartservice
+    build:
+      context: .
+      dockerfile: CartService/Dockerfile
+    networks:
+      - my-network
+    depends_on:
+      - rabbitmq
+  
+networks:
+   my-network:
+

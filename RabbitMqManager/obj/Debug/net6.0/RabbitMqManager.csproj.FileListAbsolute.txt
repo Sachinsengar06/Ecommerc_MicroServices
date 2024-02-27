@@ -1,0 +1,12 @@
+C:\Users\sachinsengar\OneDrive - Nagarro\Desktop\MS_Assignment\Ecom_MicroService\RabbitMqManager\bin\Debug\net6.0\RabbitMqManager.deps.json
+C:\Users\sachinsengar\OneDrive - Nagarro\Desktop\MS_Assignment\Ecom_MicroService\RabbitMqManager\bin\Debug\net6.0\RabbitMqManager.dll
+C:\Users\sachinsengar\OneDrive - Nagarro\Desktop\MS_Assignment\Ecom_MicroService\RabbitMqManager\bin\Debug\net6.0\RabbitMqManager.pdb
+C:\Users\sachinsengar\OneDrive - Nagarro\Desktop\MS_Assignment\Ecom_MicroService\RabbitMqManager\obj\Debug\net6.0\RabbitMqManager.csproj.AssemblyReference.cache
+C:\Users\sachinsengar\OneDrive - Nagarro\Desktop\MS_Assignment\Ecom_MicroService\RabbitMqManager\obj\Debug\net6.0\RabbitMqManager.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\sachinsengar\OneDrive - Nagarro\Desktop\MS_Assignment\Ecom_MicroService\RabbitMqManager\obj\Debug\net6.0\RabbitMqManager.AssemblyInfoInputs.cache
+C:\Users\sachinsengar\OneDrive - Nagarro\Desktop\MS_Assignment\Ecom_MicroService\RabbitMqManager\obj\Debug\net6.0\RabbitMqManager.AssemblyInfo.cs
+C:\Users\sachinsengar\OneDrive - Nagarro\Desktop\MS_Assignment\Ecom_MicroService\RabbitMqManager\obj\Debug\net6.0\RabbitMqManager.csproj.CoreCompileInputs.cache
+C:\Users\sachinsengar\OneDrive - Nagarro\Desktop\MS_Assignment\Ecom_MicroService\RabbitMqManager\obj\Debug\net6.0\RabbitMqManager.dll
+C:\Users\sachinsengar\OneDrive - Nagarro\Desktop\MS_Assignment\Ecom_MicroService\RabbitMqManager\obj\Debug\net6.0\refint\RabbitMqManager.dll
+C:\Users\sachinsengar\OneDrive - Nagarro\Desktop\MS_Assignment\Ecom_MicroService\RabbitMqManager\obj\Debug\net6.0\RabbitMqManager.pdb
+C:\Users\sachinsengar\OneDrive - Nagarro\Desktop\MS_Assignment\Ecom_MicroService\RabbitMqManager\obj\Debug\net6.0\ref\RabbitMqManager.dll

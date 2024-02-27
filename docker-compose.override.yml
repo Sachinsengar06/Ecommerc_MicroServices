@@ -1,0 +1,69 @@
+version: '3.4'
+
+services:
+  eureka-server:
+    hostname: eureka-server
+    image: steeltoeoss/eurekaserver:latest
+    environment:
+      - EUREKA_SERVER_ENABLE_SELF_PRESERVATION=false
+    ports:
+      - "8761:8761"
+    
+
+  checkoutservice:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_URLS=http://+:80
+      - EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=http://eureka-server:8761/eureka
+    ports:
+      - "7002:80"
+    depends_on:
+      - eureka-server
+
+  authwebapi:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_URLS=http://+:80
+      - EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=http://eureka-server:8761/eureka
+    ports:
+      - "7003:80"
+    depends_on:
+      - eureka-server
+
+  productservices:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_URLS=http://+:80
+      - EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=http://eureka-server:8761/eureka
+    ports:
+      - "7001:80"
+    depends_on:
+      - eureka-server
+
+  gateway:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_URLS=http://+:80
+      - EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=http://eureka-server:8761/eureka
+    ports:
+      - "5000:80"
+    depends_on:
+      - eureka-server
+      - productservices
+      - authwebapi
+      - checkoutservice
+      - rabbitmq
+
+ 
+
+  cartservice:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_URLS=http://+:80
+      - EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=http://eureka-server:8761/eureka
+    ports:
+      - "7006:80"
+    depends_on:
+      - eureka-server
+    
+

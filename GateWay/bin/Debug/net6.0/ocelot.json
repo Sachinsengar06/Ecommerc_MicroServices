@@ -1,0 +1,135 @@
+﻿{
+  "Routes": [
+    {
+      // authService
+      "UpstreamPathTemplate": "/Account",
+      "UpstreamHttpMethod": [ "POST" ],
+      //"AuthenticationOptions": {
+      //  "AuthenticationProviderKey": "Bearer",
+      //  "AllowedScopes": []
+      //},
+      "DownstreamPathTemplate": "/api/Account",
+      "UseServiceDiscovery": true,
+      "ServiceName": "AuthWebApi",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7003
+        }
+      ],
+
+      "LoadBalancerOptions": {
+        "Type": "RoundRobin"
+      }
+
+    },
+
+    //Product Api
+    {
+
+      "UpstreamPathTemplate": "/Product/{everything}",
+      "UpstreamHttpMethod": [ "GET" ],
+      "UseServiceDiscovery": true,
+      "ServiceName": "Product",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7001
+        }
+      ],
+      "DownstreamPathTemplate": "/api/Product/{everything}",
+      //"AuthenticationOptions": {
+      //  "AuthenticationProviderKey": "Bearer",
+      //  "AllowedScopes": []
+      //},
+      //"RouteClaimsRequirement": {
+      //  "Role": "User"
+      //},
+      "LoadBalancerOptions": {
+        "Type": "RoundRobin"
+      }
+    },
+    {
+
+      "UpstreamPathTemplate": "/Product/{everything}",
+      "UpstreamHttpMethod": [ "POST","DELETE","UPDATE" ],
+      "UseServiceDiscovery": true,
+      "ServiceName": "Product",
+      "DownstreamScheme": "http",
+      //"DownstreamHostAndPorts": [
+      //  {
+      //    "Host": "localhost",
+      //    "Port": 7001
+      //  }
+      //],
+      "DownstreamPathTemplate": "/api/Product/{everything}",
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "Bearer",
+        "AllowedScopes": []
+      },
+      "RouteClaimsRequirement": {
+        "Role": "Administrator"
+      },
+      "LoadBalancerOptions": {
+        "Type": "RoundRobin"
+      }
+    },
+    //cartService
+    {
+
+      "UpstreamPathTemplate": "/Cart/{everything}",
+      "UpstreamHttpMethod": [ "GET", "POST" ],
+      "UseServiceDiscovery": true,
+      "ServiceName": "Cart",
+      "DownstreamScheme": "http",
+      //"DownstreamHostAndPorts": [
+      //  {
+      //    "Host": "localhost",
+      //    "Port": 7001
+      //  }
+      //],
+      "DownstreamPathTemplate": "/api/Cart/{everything}",
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "Bearer",
+        "AllowedScopes": []
+      },
+      "RouteClaimsRequirement": {
+        "Role": "User"
+      },
+      "LoadBalancerOptions": {
+        "Type": "RoundRobin"
+      }
+    },
+    //CheckOutService
+    {
+      "DownstreamPathTemplate": "/weatherforecast",
+      "UseServiceDiscovery": true,
+      "ServiceName": "CheckOut",
+      "DownstreamScheme": "http",
+      //"DownstreamHostAndPorts": [
+      //  {
+      //    "Host": "localhost",
+      //    "Port": 7002
+      //  }
+      //],
+      "UpstreamPathTemplate": "/ProductDetail",
+      "UpstreamHttpMethod": [ "GET" ],
+      "LoadBalancerOptions": {
+        "Type": "RoundRobin"
+      }
+    }
+  ],
+  "GlobalConfiguration": {
+    //"BaseUrl": "http://localhost:5000",
+    "UseServiceDiscovery": true,
+    "DownstreamScheme": "http",
+    "ServiceDiscoveryProvider": {
+      "Host": "gateway",
+      "Port": 80,
+      //Type can be Consul, Eureka
+      "Type": "Eureka"
+    }
+  }
+}
